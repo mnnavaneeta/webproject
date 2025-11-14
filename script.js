@@ -1,123 +1,95 @@
-
-/* -------------------------
-      NAVIGATION
--------------------------- */
-function show(page) {
-    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-    document.getElementById(page).classList.add("active");
+function show(sectionId) {
+    const sections = document.querySelectorAll(".section");
+    sections.forEach(sec => sec.classList.remove("active"));
+    document.getElementById(sectionId).classList.add("active");
 }
 
-/* -------------------------
-     PRODUCT DATA
--------------------------- */
-const products = [
-    { name: "Laptop", price: "₹55,000", img: "https://picsum.photos/300?1" },
-    { name: "Smartphone", price: "₹12,000", img: "https://picsum.photos/300?2" },
-    { name: "Earbuds", price: "₹699", img: "https://picsum.photos/300?3" },
-    { name: "Keyboard", price: "₹899", img: "https://picsum.photos/300?4" },
-    { name: "Smartwatch", price: "₹1,999", img: "https://picsum.photos/300?5" },
-    { name: "Headset", price: "₹1,499", img: "https://picsum.photos/300?6" }
-];
-
-/* GENERATE PRODUCT CARDS */
-let productHTML = "";
-products.forEach(p => {
-    productHTML += `
-    <div class="col-md-4 mt-3">
-        <div class="card shadow">
-            <img src="${p.img}" class="card-img-top">
-            <div class="card-body text-center">
-                <h5>${p.name}</h5>
-                <p>${p.price}</p>
-                <button class="btn btn-warning" onclick="addToWishlist('${p.name}')">Add to Wishlist</button>
-                <button class="btn btn-success mt-2" onclick="addOrder('${p.name}')">Order Now</button>
-            </div>
-        </div>
-    </div>`;
-});
-document.getElementById("productCards").innerHTML = productHTML;
-
-/* -------------------------
-       WISHLIST
--------------------------- */
 let wishlist = [];
-function addToWishlist(item) {
-    wishlist.push(item);
-    document.getElementById("wishlistBox").innerHTML =
-        wishlist.map(i => "❤️ " + i).join("<br>");
+
+function addToWishlist(itemName) {
+    if (!wishlist.includes(itemName)) {
+        wishlist.push(itemName);
+        updateWishlist();
+        alert(itemName + " added to wishlist!");
+    } else {
+        alert(itemName + " is already in the wishlist!");
+    }
 }
 
-/* -------------------------
-        ORDERS
--------------------------- */
-let orders = [];
-function addOrder(item) {
-    orders.push(item);
-    document.getElementById("ordersBox").innerHTML =
-        orders.map(i => "🛒 " + i).join("<br>");
-}
-
-/* -------------------------
-       REVIEWS
--------------------------- */
-function addReview() {
-    let text = reviewText.value;
-    if (text === "") return;
-    reviewList.innerHTML += `<p>💬 ${text}</p>`;
-    reviewText.value = "";
-}
-
-/* -------------------------
-    CUSTOMER CARE TICKET
--------------------------- */
-function submitTicket() {
-    let issue = ticketText.value;
-    if (issue === "") return;
-    ticketBox.innerHTML += `<p>📌 ${issue}</p>`;
-    ticketText.value = "";
-}
-
-/* -------------------------
-         REPORT
--------------------------- */
-function submitReport() {
-    let rep = reportText.value;
-    if (rep === "") return;
-    reportBox.innerHTML += `<p>⚠️ ${rep}</p>`;
-    reportText.value = "";
-}
-
-/* -------------------------
-     REGISTER + LOGIN
--------------------------- */
-async function registerUser() {
-
-    nameErr.innerHTML = regName.value === "" ? "Enter name" : "";
-    emailErr.innerHTML = !regEmail.value.includes("@") ? "Invalid email" : "";
-    passErr.innerHTML = regPass.value.length < 4 ? "Too short" : "";
-
-    if (regName.value === "" || !regEmail.value.includes("@") || regPass.value.length < 4)
+function updateWishlist() {
+    const container = document.getElementById("wishlistBox");
+    if (wishlist.length === 0) {
+        container.innerHTML = "<p>No items yet.</p>";
         return;
-
-    await new Promise(r => setTimeout(r, 700));
-    alert("Registration successful!");
+    }
+    container.innerHTML = "";
+    wishlist.forEach(item => {
+        container.innerHTML += `<p>⭐ ${item}</p>`;
+    });
 }
 
-async function loginUser() {
-    if (loginEmail.value === "" || loginPass.value === "") {
-        alert("Enter Email & Password");
+function addReview() {
+    let reviewText = document.getElementById("reviewText").value.trim();
+    if (reviewText === "") {
+        alert("Please write a review before submitting!");
+        return;
+    }
+    let reviewList = document.getElementById("reviewList");
+    let newReview = document.createElement("p");
+    newReview.textContent = "📝 " + reviewText;
+    reviewList.appendChild(newReview);
+    document.getElementById("reviewText").value = "";
+}
+
+function submitReport() {
+    let report = document.getElementById("reportBox").value.trim();
+    if (report === "") {
+        alert("Please describe the issue before submitting!");
+        return;
+    }
+    alert("Your report has been submitted. Thank you!");
+    document.getElementById("reportBox").value = "";
+}
+
+function registerUser() {
+    let name = document.getElementById("regName").value.trim();
+    let email = document.getElementById("regEmail").value.trim();
+    let pass = document.getElementById("regPass").value.trim();
+
+    document.getElementById("nameError").textContent = "";
+    document.getElementById("emailError").textContent = "";
+    document.getElementById("passError").textContent = "";
+
+    let valid = true;
+
+    if (name === "") {
+        document.getElementById("nameError").textContent = "Name is required.";
+        valid = false;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+        document.getElementById("emailError").textContent = "Enter a valid email address.";
+        valid = false;
+    }
+
+    if (pass.length < 6) {
+        document.getElementById("passError").textContent = "Password must be at least 6 characters.";
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Registration Successful!");
+    }
+}
+
+function loginUser() {
+    let email = document.getElementById("loginEmail").value.trim();
+    let pass = document.getElementById("loginPass").value.trim();
+
+    if (email === "" || pass === "") {
+        alert("Please enter both email and password.");
         return;
     }
 
-    await new Promise(r => setTimeout(r, 600));
-    alert("Login Success!");
-}
-
-/* -------------------------
-     SCROLL TO PRODUCTS
--------------------------- */
-function scrollToProducts() {
-    document.getElementById("products").scrollIntoView({
-        behavior: "smooth"
-    });
+    alert("Login Successful!");
 }

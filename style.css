@@ -1,29 +1,23 @@
 body {
     font-family: Arial;
     margin: 0;
-    background: #f1fcf9;
+    background: #f2f0ff;
 }
 
-/* Navigation Menu */
 .menu {
-    background: #6d28d9; /* Purple */
-    padding: 12px;
-    display: flex;
-    gap: 20px;
+    background: #6a5acd;
+    padding: 15px;
+    text-align: center;
 }
 
 .menu a {
     color: white;
-    font-weight: bold;
+    margin: 15px;
+    font-size: 18px;
     cursor: pointer;
     text-decoration: none;
 }
 
-.menu a:hover {
-    color: #fde047;
-}
-
-/* Sections */
 .section {
     display: none;
     padding: 20px;
@@ -33,86 +27,85 @@ body {
     display: block;
 }
 
-/* Home Banner */
-.home-banner {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px #d8b4fe;
+.title {
+    color: #5a46d0;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Product Grid */
+.subtitle {
+    text-align: center;
+    font-size: 18px;
+}
+
+.home-banner {
+    display: block;
+    width: 80%;
+    height: 450px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 20px;
 }
 
-/* Product Cards */
 .card {
     background: white;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 4px 10px #cbd5e1;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px #bdb8ff;
 }
 
 .card img {
     width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 180px;
+    border-radius: 10px;
 }
 
-/* Wishlist Buttons */
-.wish-btn {
-    background: #f97316;
+button {
+    background: #6a5acd;
     color: white;
-    padding: 6px 10px;
+    padding: 10px;
     border: none;
     border-radius: 6px;
     margin-top: 10px;
     cursor: pointer;
 }
 
-.wish-btn:hover {
-    background: #c2410c;
-}
-
-/* Inputs */
-input {
-    width: 250px;
-    padding: 8px;
-    margin: 6px 0;
-    border: 2px solid #a855f7; /* Purple border */
-    border-radius: 6px;
-}
-
-/* General buttons */
-button {
-    background: #6d28d9;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    margin-top: 8px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
 button:hover {
-    background: #4c1d95;
+    background: #5943c0;
 }
 
-/* Errors */
+textarea, input {
+    width: 300px;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #a99aff;
+}
+
 .error {
     color: red;
     font-size: 14px;
 }
 
-/* Footer */
+.wishlist-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 0px 8px lightgray;
+}
+
 footer {
-    background: #4c1d95;
-    padding: 15px;
     text-align: center;
+    padding: 15px;
+    background: #6a5acd;
     color: white;
     margin-top: 30px;
 }
