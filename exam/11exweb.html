@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Callback Function Example</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+      background-color: #ffe4ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      color: #444;
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 250px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #ff66a3;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff3385;
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+    .success {
+      color: green;
+      transform: scale(1.05);
+    }
+    .error {
+      color: red;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h2>ENTER YOUR NAME HERE:</h2>
+  <input type="text" id="username" placeholder="Enter name "> <br>
+  <button onclick="handleForm(submitSuccess, submitError)">SUMBIT</button>
+  <p id="message"></p>
+  <script>
+    // Main function with callbacks
+    function handleForm(onSuccess, onError) {
+      let name = document.getElementById("username").value.trim();
+      if (name) {
+        onSuccess(name);
+      } else {
+        onError();
+      }
+    }
+    // Success callback
+    function submitSuccess(name) {
+      let msg = document.getElementById("message");
+      msg.innerHTML = "Hello, " + name + "! Submission successful ";
+      msg.className = "success";
+    }
+    // Error callback
+    function submitError() {
+      let msg = document.getElementById("message");
+      msg.innerHTML = "⚠️ Name cannot be empty!";
+      msg.className = "error";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeliRoots | Organic Food Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF6B35;
+    --secondary: #F7931E;
+    --tertiary: #FFC93C;
+    --purple: #9B59B6;
+    --pink: #E91E63;
+    --blue: #3498DB;
+    --teal: #1ABC9C;
+    --dark: #0a0e1a;
+    --dark-card: #151b2e;
+    --dark-lighter: #1e2640;
+    --light: #FFF4E6;
+    --accent: #FF8C42;
+    --text: #e8e9ed;
+    --text-muted: #a8aab7;
+    --white: #fff;
+    --gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    --bg-gradient: linear-gradient(135deg, #0a0e1a 0%, #151b2e 50%, #1e2640 100%);
+  }
+
+  * {box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth;}
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, #0a0e1a 0%, #151b2e 25%, #1a1f35 50%, #1e2640 75%, #141a2e 100%);
+    background-attachment: fixed;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(247, 147, 30, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 40% 90%, rgba(155, 89, 182, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 70% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Animated header with glassmorphism */
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+  }
+
+  header.scrolled {
+    padding: 10px 40px;
+    background: rgba(10, 14, 26, 0.95);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    animation: fadeInDown 0.8s ease;
+  }
+
+  .logo-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .logo:hover .logo-icon {
+    transform: scale(1.1);
+  }
+
+  nav {
+    animation: fadeInDown 0.8s ease 0.2s backwards;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    margin: 0 15px;
+    transition: all 0.3s;
+    position: relative;
+    padding: 5px 0;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  nav a:hover {color: var(--primary);}
+
+  /* Dynamic Hero Section with Parallax Effect */
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(10, 14, 26, 0.7)), url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat fixed;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.25) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+    animation: fadeInUp 1s ease;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #fff, #FFB380);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+    animation: fadeInUp 1s ease 0.3s backwards;
+  }
+
+  .hero a {
+    margin-top: 35px;
+    background: var(--gradient);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+    animation: fadeInUp 1s ease 0.6s backwards;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+  }
+
+  .hero a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.7);
+  }
+
+  /* Floating Elements */
+  .float-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.15);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .float-1 { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+  .float-2 { width: 60px; height: 60px; top: 60%; right: 15%; animation-delay: 2s; }
+  .float-3 { width: 100px; height: 100px; bottom: 15%; left: 20%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Sections with stagger animations */
+  section {
+    padding: 120px 60px;
+    max-width: 1200px;
+    margin: auto;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  section.visible {
+    opacity: 1;
+  }
+
+  section h2 {
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B35, #F7931E, #FFC93C);
+    border-radius: 2px;
+  }
+
+  /* Glassmorphism Cards */
+  .content {
+    background: rgba(21, 27, 46, 0.8);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.3);
+  }
+
+  /* Services Grid with Hover Effects */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .service {
+    background: linear-gradient(135deg, rgba(21, 27, 46, 0.9) 0%, rgba(30, 38, 64, 0.9) 100%);
+    border: 2px solid rgba(255, 107, 53, 0.25);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFC93C 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+
+  .service:hover::before {
+    opacity: 1;
+  }
+
+  .service:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .service:hover .service-icon {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  .service h3, .service p {
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s ease;
+  }
+
+  .service h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+  }
+
+  .service p {
+    color: var(--text-muted);
+  }
+
+  .service:hover h3,
+  .service:hover p {
+    color: white;
+  }
+
+  /* Animated List Items */
+  .objectives ul, .values ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .objectives li, .values li {
+    background: linear-gradient(135deg, rgba(21, 27, 46, 0.95) 0%, rgba(30, 38, 64, 0.95) 100%);
+    margin: 15px 0;
+    padding: 20px 25px;
+    border-radius: 12px;
+    border-left: 6px solid var(--primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  .objectives li:hover, .values li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+    border-left-width: 10px;
+    background: linear-gradient(135deg, rgba(30, 38, 64, 1) 0%, rgba(40, 48, 74, 1) 100%);
+  }
+
+  /* Team Grid with Image Placeholders */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .member {
+    background: linear-gradient(135deg, rgba(21, 27, 46, 0.95) 0%, rgba(30, 38, 64, 0.95) 100%);
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.25);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+  }
+
+  .member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFC93C 100%);
+    transition: left 0.4s ease;
+    z-index: 0;
+  }
+
+  .member:hover::before {
+    left: 0;
+  }
+
+  .member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+  }
+
+  .member-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFC93C 100%);
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+  }
+
+  .member:hover .member-avatar {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
+  }
+
+  .member h3, .member p {
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s ease;
+  }
+
+  .member h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+  }
+
+  .member p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .member:hover h3,
+  .member:hover p {
+    color: white;
+  }
+
+  /* Footer with Gradient */
+  footer {
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFC93C 100%);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(255, 193, 60, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  footer h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 15px 20px;
+    }
+    nav {
+      margin-top: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a { margin: 5px 10px; }
+    section { padding: 80px 30px; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1.1rem; }
+    section h2 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo">
+    <div class="logo-icon">
+      <img src="logo.jpeg" alt="DeliRoots Logo">
+    </div>
+    <span>DeliRoots</span>
+  </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#vision">Vision</a>
+    <a href="#services">Services</a>
+    <a href="#objectives">Objectives</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="float-element float-1"></div>
+  <div class="float-element float-2"></div>
+  <div class="float-element float-3"></div>
+  <div class="hero-content">
+    <h1>Welcome to DeliRoots</h1>
+    <p>Connecting farms and families — delivering pure, organic goodness straight from soil to spoon.</p>
+    <a href="#about">Explore More</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About DeliRoots</h2>
+  <div class="content">
+    <p>DeliRoots is a forward-thinking organic food delivery company dedicated to promoting sustainability, transparency, and healthy living. We partner with certified organic farms and ensure that every product we deliver meets the highest standards of quality and freshness.</p>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section id="vision">
+  <h2>Vision & Mission</h2>
+  <div class="content">
+    <p><strong>Vision:</strong> To build a sustainable food ecosystem where farmers prosper, and customers enjoy authentic, traceable organic food.</p>
+    <br>
+    <p><strong>Mission:</strong> To empower local farmers through fair trade and technology, while delivering nutritious, eco-friendly produce to every household.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS & SERVICES -->
+<section id="services">
+  <h2>Our Products & Services</h2>
+  <div class="services">
+    <div class="service">
+      <div class="service-icon">🥬</div>
+      <h3>Organic Produce Delivery</h3>
+      <p>Fresh fruits and vegetables sourced directly from local farms.</p>
+    </div>
+   <div class="service">
+  <div class="service-icon">📱</div>
+  <h3>QR Code Tracking</h3>
+  <p>Scan product QR codes to instantly view farm details, harvest dates, and complete freshness journey.</p>
+</div>
+<div class="service">
+  <div class="service-icon">🌾</div>
+  <h3>AI Crop Advisor</h3>
+  <p>Smart recommendations for farmers on optimal crops and fair market pricing based on real-time data.</p>
+</div>
+  </div>
+</section>
+
+<!-- OBJECTIVES -->
+<section id="objectives" class="objectives">
+  <h2>Core Objectives</h2>
+  <div class="content">
+    <ul>
+      <li>Promote sustainable and eco-friendly farming practices.</li>
+      <li>Ensure fair pricing and equal opportunities for small-scale farmers.</li>
+      <li>Deliver high-quality organic food to health-conscious consumers.</li>
+      <li>Reduce food waste through smart logistics and data-driven insights.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <h2>Our Core Values</h2>
+  <div class="content">
+    <ul>
+      <li><strong>Integrity:</strong> Transparency in every step from farm to customer.</li>
+      <li><strong>Quality:</strong> Commitment to the freshest, safest, and most nutritious food.</li>
+      <li><strong>Sustainability:</strong> Caring for people and the planet equally.</li>
+      <li><strong>Innovation:</strong> Leveraging technology to empower local farming communities.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <h2>Our Team</h2>
+  <div class="team-grid">
+    <div class="member">
+      <div class="member-avatar">👩</div>
+      <h3>Logitha</h3>
+      
+    </div>
+    <div class="member">
+      <div class="member-avatar">👩</div>
+      <h3>Navaneeta</h3>
+      
+    </div>
+    <div class="member">
+      <div class="member-avatar">👩</div>
+      <h3>Sanjana</h3>
+      
+    </div>
+    <div class="member">
+      <div class="member-avatar">👩</div>
+      <h3>Sharmila</h3>
+      
+    </div>
+    <div class="member">
+      <div class="member-avatar">👩</div>
+      <h3>Vaishnavi</h3>
+      
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="content" style="text-align:center;">
+    <p>📧 Email: <strong>deliroots@gmail.com</strong></p>
+    <p>📱 Phone: <strong>+91 55512 34567</strong></p>
+    <p>📍 Address: 123 Green Valley Road, Chennai</p>
+  </div>
+</section>
+
+<footer>
+  <h3>DeliRoots</h3>
+  <p>From Soil to Spoon — Delivering Nature's Best</p>
+  <p>© 2025 DeliRoots. All rights reserved.</p>
+</footer>
+
+<script>
+// Header scroll effect
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll for navigation
+document.querySelectorAll('nav a').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Intersection Observer for fade-in animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('section').forEach(section => {
+  observer.observe(section);
+});
+</script>
+
+</body>
+</html>

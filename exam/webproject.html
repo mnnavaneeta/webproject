@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Horizon Hub - Your Gateway to Endless Possibilities</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<div class="menu">
+    <a onclick="show('home')">Home</a>
+    <a onclick="show('products')">Products</a>
+    <a onclick="show('orders')">Orders</a>
+    <a onclick="show('wishlist')">Wishlist</a>
+    <a onclick="show('reviews')">Reviews</a>
+    <a onclick="show('care')">Customer Care</a>
+    <a onclick="show('report')">Report</a>
+    <a onclick="show('login')">Login/Register</a>
+    <a onclick="show('about')">About</a>
+</div>
+
+<!-- HOME -->
+<div id="home" class="section active">
+    <h2 style="color:#667eea;">Welcome to Horizon Hub – Where Possibilities Meet Reality! 🌅</h2>
+    <p style="font-size:1.1em; margin:20px 0;">Your gateway to premium electronics, accessories, and lifestyle products. Explore endless possibilities with quality products that help you reach new horizons every day!</p>
+    <img src="front.jpg" class="home-banner" style="height: 600px; width:700">
+    <p style="text-align:center; font-size:1.2em; margin-top:30px; color:#667eea; font-weight:bold;">
+        Expand your horizons – Start shopping today!
+    </p>
+</div>
+
+<!-- PRODUCTS -->
+<div id="products" class="section">
+    <h2 style="color:#667eea;">Our Products</h2>
+
+    <div class="grid">
+
+        <!-- PRODUCT 1 -->
+        <div class="card">
+            <img src="1.jpg">
+            <h3>Laptop</h3>
+            <p>₹55,000</p>
+            <button class="wish-btn" onclick="addToWishlist('Laptop')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="card">
+            <img src="2.jpg">
+            <h3>Smartphone</h3>
+            <p>₹12,000</p>
+            <button class="wish-btn" onclick="addToWishlist('Smartphone')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="card">
+            <img src="3.jpg">
+            <h3>Earbuds</h3>
+            <p>₹699</p>
+            <button class="wish-btn" onclick="addToWishlist('Earbuds')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 4 -->
+        <div class="card">
+            <img src="4.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹2,499</p>
+            <button class="wish-btn" onclick="addToWishlist('Smart Watch')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 5 -->
+        <div class="card">
+            <img src="5.jpg" height="12px",width="20px">
+            <h3>Bluetooth Speaker</h3>
+            <p>₹1,199</p>
+            <button class="wish-btn" onclick="addToWishlist('Bluetooth Speaker')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 6 -->
+        <div class="card">
+            <img src="6.jpg">
+            <h3>Backpack</h3>
+            <p>₹899</p>
+            <button class="wish-btn" onclick="addToWishlist('Backpack')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 7 -->
+        <div class="card">
+            <img src="7.jpg">
+            <h3>Keyboard</h3>
+            <p>₹799</p>
+            <button class="wish-btn" onclick="addToWishlist('Keyboard')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 8 -->
+        <div class="card">
+            <img src="8.jpg">
+            <h3>Water Bottle</h3>
+            <p>₹299</p>
+            <button class="wish-btn" onclick="addToWishlist('Water Bottle')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 9 -->
+        <div class="card">
+            <img src="9.jpg">
+            <h3>Wireless Mouse</h3>
+            <p>₹499</p>
+            <button class="wish-btn" onclick="addToWishlist('Wireless Mouse')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 10 -->
+        <div class="card">
+            <img src="10.jpg">
+            <h3>DSLR Camera</h3>
+            <p>₹45,999</p>
+            <button class="wish-btn" onclick="addToWishlist('DSLR Camera')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 11 -->
+        <div class="card">
+            <img src="11.jpg">
+            <h3>Headphones</h3>
+            <p>₹1,499</p>
+            <button class="wish-btn" onclick="addToWishlist('Headphones')">Add to Wishlist</button>
+        </div>
+
+        <!-- PRODUCT 12 -->
+        <div class="card">
+            <img src="12.jpg">
+            <h3>Gaming Chair</h3>
+            <p>₹7,999</p>
+            <button class="wish-btn" onclick="addToWishlist('Gaming Chair')">Add to Wishlist</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ORDERS -->
+<div id="orders" class="section">
+    <h2 style="color:#667eea;">Your Orders</h2>
+    <p>No orders placed yet. Start exploring our products!</p>
+</div>
+
+<!-- WISHLIST -->
+<div id="wishlist" class="section">
+    <h2 style="color:#667eea;">Your Wishlist</h2>
+    <div id="wishlistBox" class="card">No items yet.</div>
+</div>
+
+<!-- REVIEWS -->
+<div id="reviews" class="section">
+    <h2 style="color:#667eea;">Customer Reviews</h2>
+    <textarea id="reviewText" rows="5" placeholder="Share your experience with Horizon Hub..." style="width:300px;"></textarea><br>
+    <button onclick="addReview()">Submit Review</button>
+    <h3>What Our Customers Say:</h3>
+    <div id="reviewList"></div>
+</div>
+
+<!-- CUSTOMER CARE -->
+<div id="care" class="section">
+    <h2 style="color:#667eea;">Customer Care</h2>
+    <p><strong>We're here to help!</strong></p>
+    <p>📧 Email: horizonhubsupport@gmail.com</p>
+    <p>📱 Phone: +91 98765 43210</p>
+    <p>⏰ Working Hours: 9 AM – 6 PM (Monday to Saturday)</p>
+    <p style="margin-top:20px;">Have questions? Our dedicated support team is ready to assist you with any queries or concerns.</p>
+</div>
+
+<!-- REPORT -->
+<div id="report" class="section">
+    <h2 style="color:#667eea;">Report an Issue</h2>
+    <p>Your feedback helps us improve. Please describe any issues you've encountered:</p>
+    <textarea id="reportBox" rows="4" placeholder="Describe your issue in detail..." style="width:300px;"></textarea><br>
+    <button onclick="submitReport()">Submit Report</button>
+</div>
+
+<!-- LOGIN + REGISTER -->
+<div id="login" class="section">
+    <h2 style="color:#667eea;">User Login / Registration</h2>
+
+    <h3>New to Horizon Hub? Register Now</h3>
+    <input id="regName" placeholder="Full Name"><br>
+    <div id="nameError" class="error"></div>
+
+    <input id="regEmail" placeholder="Email Address"><br>
+    <div id="emailError" class="error"></div>
+
+    <input id="regPass" placeholder="Password" type="password"><br>
+    <div id="passError" class="error"></div>
+
+    <button onclick="registerUser()">Register</button>
+
+    <hr>
+
+    <h3>Already a Member? Login</h3>
+    <input id="loginEmail" placeholder="Email Address"><br>
+    <input id="loginPass" type="password" placeholder="Password"><br>
+
+    <button onclick="loginUser()">Login</button>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="section">
+    <h2 style="color:#667eea;">About Horizon Hub</h2>
+    
+    <p style="font-size:1.1em; color:#667eea; font-weight:600; margin:20px 0;">Welcome to Horizon Hub – Your Gateway to Endless Possibilities! 🌅</p>
+    
+    <h3 style="color:#764ba2;">Our Story</h3>
+    <p>Founded in 2025, Horizon Hub emerged from a simple yet powerful vision: to create an e-commerce platform that expands horizons and opens up new possibilities for shoppers across India. We believe that the right product at the right time can change perspectives, enhance lives, and help people reach their goals.</p>
+    
+    <h3 style="color:#764ba2;">What "Horizon Hub" Means</h3>
+    <p>The horizon represents endless possibilities, new beginnings, and the promise of something better ahead. As a "hub," we're the central point where quality products, great prices, and exceptional service converge. Horizon Hub isn't just a store – it's a launchpad for your aspirations, whether you're upgrading your tech, enhancing your lifestyle, or discovering something new.</p>
+    
+    <h3 style="color:#764ba2;">Our Vision</h3>
+    <p>To be India's most trusted e-commerce destination, where every customer finds products that help them reach their personal and professional horizons. We're committed to expanding what's possible in online shopping through innovation, integrity, and customer-first thinking.</p>
+    
+    <h3 style="color:#764ba2;">Our Mission</h3>
+    <p>To provide a seamless shopping experience that combines:</p>
+    <ul style="line-height:2; margin:15px 0 15px 30px;">
+        <li><strong>Quality:</strong> Only authentic, premium products</li>
+        <li><strong>Variety:</strong> A diverse range to suit every need</li>
+        <li><strong>Value:</strong> Competitive prices without compromise</li>
+        <li><strong>Service:</strong> Support that goes beyond the sale</li>
+    </ul>
+    
+    <h3 style="color:#764ba2;">What We Offer</h3>
+    <p>Horizon Hub brings you a carefully curated selection across multiple categories:</p>
+    <ul style="line-height:2; margin:15px 0 15px 30px;">
+        <li><strong>Electronics:</strong> Cutting-edge laptops, smartphones, and gadgets</li>
+        <li><strong>Accessories:</strong> Headphones, speakers, keyboards, and more</li>
+        <li><strong>Lifestyle Products:</strong> Backpacks, water bottles, and everyday essentials</li>
+        <li><strong>Professional Gear:</strong> Cameras, gaming equipment, and productivity tools</li>
+    </ul>
+    <p>Whether you're a student, professional, tech enthusiast, or simply someone who values quality, Horizon Hub has something that will help you move forward.</p>
+    
+    <h3 style="color:#764ba2;">Our Core Values</h3>
+    <p><strong>Trust:</strong> Every product is verified and authentic. We build relationships, not just transactions.</p>
+    <p><strong>Excellence:</strong> From product selection to customer service, we maintain the highest standards.</p>
+    <p><strong>Innovation:</strong> We constantly evolve to bring you better products, better prices, and better experiences.</p>
+    <p><strong>Customer Focus:</strong> Your satisfaction drives everything we do. Your feedback shapes our future.</p>
+    
+    <h3 style="color:#764ba2;">The Horizon Hub Promise</h3>
+    <ul style="line-height:2; margin:15px 0 15px 30px;">
+        <li>✨ <strong>Authenticity Guaranteed:</strong> Every product comes with a 100% authenticity guarantee</li>
+        <li>🚚 <strong>Fast Delivery:</strong> Quick and reliable shipping to your doorstep across India</li>
+        <li>💰 <strong>Best Prices:</strong> Competitive rates that offer true value for money</li>
+        <li>🔒 <strong>Secure Shopping:</strong> Advanced encryption protects every transaction</li>
+        <li>💜 <strong>Quality Service:</strong> Dedicated support team ready to assist you</li>
+        <li>📦 <strong>Easy Returns:</strong> Hassle-free return and exchange policy</li>
+    </ul>
+    
+    <h3 style="color:#764ba2;">Get in Touch</h3>
+    <p>Have questions? Need assistance? Our team is here to help!</p>
+    <p>📧 <strong>Email:</strong> horizonhubsupport@gmail.com</p>
+    <p>📱 <strong>Phone:</strong> +91 98765 43210</p>
+    <p>⏰ <strong>Working Hours:</strong> 9 AM – 6 PM (Monday to Saturday)</p>
+    <p>🌐 <strong>Follow us on social media</strong> for exclusive deals, new arrivals, and special offers!</p>
+    
+    <p style="text-align:center; font-size:1.1em; margin-top:30px; color:#667eea; font-weight:bold;">
+        Welcome to Horizon Hub – where your shopping journey meets endless possibilities. Explore, discover, and reach new horizons with us today! 🌅
+    </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    © 2025 Horizon Hub — Your Gateway to Endless Possibilities
+</footer>
+
+<script src="script.js"></script>
+</body>
+</ht

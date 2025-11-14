@@ -1,0 +1,21 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Odd or Even</title> 
+</head>
+<body> 
+    <h1 align="center">ODD OR EVEN CHECKER</h1> 
+    <h2 align="center" id="num"></h2>
+
+    <script>
+        const n = prompt("ENTER A NUMBER TO CHECK WHETHER IT IS ODD OR EVEN"); 
+        
+        if(n % 2 == 0){ 
+            document.getElementById("num").innerHTML = n + " is an EVEN number."; 
+        } 
+        else{ 
+            document.getElementById("num").innerHTML = n + " is an ODD number."; 
+        } 
+    </script>
+</body> 
+</html>
